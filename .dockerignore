@@ -1,0 +1,8 @@
+.aws-sam/
+node_modules/
+docs/
+events/
+.mage/
+
+samconfig.toml
+template.yaml

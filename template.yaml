@@ -11,15 +11,24 @@ Globals:
     Timeout: 5
     MemorySize: 128
 
+Parameters:
+  LambdaArchitecture:
+    Type: String
+    Default: "x86_64"
+    Description: "Lambda infraestructure architecture"
+    AllowedValues: ["x86_64", "arm64"]
+
 Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Metadata:
-      BuildMethod: go1.x
+      DockerTag: provided.al2023-v1
+      DockerContext: ./
+      Dockerfile: Dockerfile
+      DockerBuildArgs: 
+        ENTRY_POINT: "./cmd/function1/main.go"
     Properties:
-      CodeUri: ./cmd/function1
-      Handler: bootstrap
-      Runtime: provided.al2023
+      PackageType: Image
       Architectures:
         - x86_64
       Events:
@@ -31,11 +40,13 @@ Resources:
   ByeWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Metadata:
-      BuildMethod: go1.x
+      DockerTag: provided.al2023-v1
+      DockerContext: ./
+      Dockerfile: Dockerfile
+      DockerBuildArgs: 
+        ENTRY_POINT: "./cmd/function2/main.go"
     Properties:
-      CodeUri: ./cmd/function2
-      Handler: bootstrap
-      Runtime: provided.al2023
+      PackageType: Image
       Architectures:
         - x86_64
       Events:
