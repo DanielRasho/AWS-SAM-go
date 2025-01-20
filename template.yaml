@@ -15,9 +15,9 @@ Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Metadata:
-      BuildMethod: go1.x
+      BuildMethod: makefile
     Properties:
-      CodeUri: ./cmd/function1
+      CodeUri: ./
       Handler: bootstrap
       Runtime: provided.al2023
       Architectures:
@@ -31,9 +31,9 @@ Resources:
   ByeWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Metadata:
-      BuildMethod: go1.x
+      BuildMethod: makefile
     Properties:
-      CodeUri: ./cmd/function2
+      CodeUri: ./
       Handler: bootstrap
       Runtime: provided.al2023
       Architectures:
